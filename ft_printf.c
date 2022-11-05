@@ -1,4 +1,4 @@
-// O objetivo deste projeto é escrver uma biblioteca que contenha 'ft_printf(), que imite o comportamento da função 'printf' original.
+// O objetivo deste projeto é escrver uma biblioteca que contenha 'ft_printf(), que imite o comportamento da função 'printf' original, que aceita uma número variável de argumentos. 
 
 /
 
