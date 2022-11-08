@@ -6,18 +6,11 @@
 /*   By: lmedeiro <lmedeiro@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 22:14:14 by lmedeiro          #+#    #+#             */
-/*   Updated: 2022/11/08 23:46:29 by lmedeiro         ###   ########.fr       */
+/*   Updated: 2022/11/08 23:59:31 by lmedeiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-// O objetivo deste projeto é escrever uma biblioteca que contenha 'ft_printf(), que imite 
-// o comportamento da função 'printf' original, que aceita uma número variável de argumentos. 
-
 #include "ft_printf.h"
-#include <stdio.h>
-
-// A função abaixo analisará o tipo de caracter logo após o '%' e vai chamar a função adequada para 
-// a impressão deste na tela. A função retornará o número de caracteres que foram impressos na tela. 
 
 static int	ft_checking_format(const char *format, va_list args, int i)
 {
@@ -46,7 +39,8 @@ static int	ft_checking_format(const char *format, va_list args, int i)
 static int	ft_priting(const char *format, va_list args)
 {
 	int	i;
-	int	len_str; // tamanho da string impressa
+	int	len_str;
+
 	i = 0;
 	len_str = 0;
 	while (format[i])

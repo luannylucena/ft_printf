@@ -6,7 +6,7 @@
 /*   By: lmedeiro <lmedeiro@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 22:08:05 by lmedeiro          #+#    #+#             */
-/*   Updated: 2022/11/08 22:55:45 by lmedeiro         ###   ########.fr       */
+/*   Updated: 2022/11/08 23:49:34 by lmedeiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ int	ft_putptr(unsigned long ptr)
 		return (ft_putstr(SYS_NIL));
 	if (ptr < 16)
 	{
-		i += ft_putstr("0x"); //
+		i += ft_putstr("0x");
 		i += ft_putchar(base_char[ptr]);
 		return (i);
 	}
