@@ -1,12 +1,11 @@
-// O objetivo deste projeto é escrver uma biblioteca que contenha 'ft_printf(), que imite o comportamento da função 'printf' original, que aceita uma número variável de argumentos. 
-
-/
-
-// Iremos analisar "c,s,p,d,i,u,x,X, e %"
+// O objetivo deste projeto é escrever uma biblioteca que contenha 'ft_printf(), que imite 
+// o comportamento da função 'printf' original, que aceita uma número variável de argumentos. 
 
 #include "ft_printf.h"
+#include <stdio.h>
 
-// A função analisará o tipo de caracter logo após o '%' e vai chamar a função adequada para a impressão deste na tela. A função retornará o número de caracteres que foram impressos na tela. 
+// A função abaixo analisará o tipo de caracter logo após o '%' e vai chamar a função adequada para 
+// a impressão deste na tela. A função retornará o número de caracteres que foram impressos na tela. 
 
 static int	ft_checking_format(char *format, va_list args, int i)
 {
@@ -19,10 +18,10 @@ static int	ft_checking_format(char *format, va_list args, int i)
 		len_format = ft_putchar(va_arg(args, int));
 	else if (format[i] == 's')
 		len_format = ft_putstr(va_arg(args, char *));
-	else if (format[i] == 'p')
-		len_format = ft_putptr(va_arg(args, unsigned long));
-	else if (format[i] == 'u')
-		len_format = ft_putunbr(va_arg(args, unsigned int));
+	//else if (format[i] == 'p')
+		//len_format = ft_putptr(va_arg(args, unsigned long));
+	//else if (format[i] == 'u')
+		//len_format = ft_putunbr(va_arg(args, unsigned int));
 	// else if (format[i] == 'x' || format[i] == 'X')
 		//len_format = (FAZER A FUNÇÃO)
 	else if (format[i] == '%')
@@ -42,7 +41,7 @@ static int	ft_priting(char *format, va_list args)
 		if (format[i] == '%')
 		{
 			i++;
-			len_str += ft_cheking_format(format, args, i);
+			len_str += ft_checking_format(format, args, i);
 		}
 		else
 			len_str += write(1, &format[i], 1);
@@ -51,7 +50,7 @@ static int	ft_priting(char *format, va_list args)
 	return(len_str);
 }
 
-int	ft_printf(const char *format, ...)
+int	ft_printf(char *format, ...)
 {
 	va_list args;
 
@@ -64,4 +63,15 @@ int	ft_printf(const char *format, ...)
 	va_end(args);
 
 	return (len_printed);
+}
+
+int main(void)
+{
+	int ft;
+	int p;
+
+	ft = ft_printf("Flag: %i, %c", 1111111114, 'a');
+	p = printf("Flag: %i, %c", 111111114, 'a');
+	printf("printf %i", ft);
+	printf("printf %i", p);
 }
