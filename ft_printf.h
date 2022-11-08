@@ -1,18 +1,30 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: lmedeiro <lmedeiro@student.42sp.org.br>    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/11/08 22:09:19 by lmedeiro          #+#    #+#             */
+/*   Updated: 2022/11/08 23:14:58 by lmedeiro         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef FT_PRINTF_H
 # define FT_PRINTF_H
 
-#include <stdarg.h> // va_start, va_arg, va_copy, va_end
-#include <unistd.h> // write
-#include <stdlib.h> // malloc
+# include <stdarg.h> 
+# include <unistd.h> 
+# include <stdlib.h> 
 
-//abaixo, declaro as funções que irei utilizar
+# define SYS_NIL "(nil)"
 
-int         ft_printf(char *format, ...);
-static int	ft_checking_format(char *format, va_list args, int i);
-static int	ft_priting(char *format, va_list args);
-int         ft_putnbr(int n);
-int         ft_putstr(char *s);
+int			ft_printf(const char *format, ...);
+int			ft_putnbr(int n);
+int			ft_putstr(char *s);
 int			ft_putchar(char c);
-
+int			ft_putunbr(unsigned int u);
+int			ft_puthexa(unsigned int x, int signal);
+int			ft_putptr(unsigned long ptr);
 
 #endif 

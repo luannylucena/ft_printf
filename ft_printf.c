@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: lmedeiro <lmedeiro@student.42sp.org.br>    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/11/08 22:14:14 by lmedeiro          #+#    #+#             */
+/*   Updated: 2022/11/08 23:46:29 by lmedeiro         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 // O objetivo deste projeto é escrever uma biblioteca que contenha 'ft_printf(), que imite 
 // o comportamento da função 'printf' original, que aceita uma número variável de argumentos. 
 
@@ -7,7 +19,7 @@
 // A função abaixo analisará o tipo de caracter logo após o '%' e vai chamar a função adequada para 
 // a impressão deste na tela. A função retornará o número de caracteres que foram impressos na tela. 
 
-static int	ft_checking_format(char *format, va_list args, int i)
+static int	ft_checking_format(const char *format, va_list args, int i)
 {
 	int	len_format;
 
@@ -18,25 +30,26 @@ static int	ft_checking_format(char *format, va_list args, int i)
 		len_format = ft_putchar(va_arg(args, int));
 	else if (format[i] == 's')
 		len_format = ft_putstr(va_arg(args, char *));
-	//else if (format[i] == 'p')
-		//len_format = ft_putptr(va_arg(args, unsigned long));
-	//else if (format[i] == 'u')
-		//len_format = ft_putunbr(va_arg(args, unsigned int));
-	// else if (format[i] == 'x' || format[i] == 'X')
-		//len_format = (FAZER A FUNÇÃO)
+	else if (format[i] == 'p')
+		len_format = ft_putptr(va_arg(args, unsigned long));
+	else if (format[i] == 'u')
+		len_format = ft_putunbr(va_arg(args, unsigned int));
+	else if (format[i] == 'x')
+		len_format = ft_puthexa(va_arg(args, unsigned int), 0);
+	else if (format[i] == 'X')
+		len_format = ft_puthexa(va_arg(args, unsigned int), 1);
 	else if (format[i] == '%')
 		len_format = ft_putchar('%');
 	return (len_format);
 }
 
-static int	ft_priting(char *format, va_list args)
+static int	ft_priting(const char *format, va_list args)
 {
-	int i; // percorrerá a string
+	int	i;
 	int	len_str; // tamanho da string impressa
-
 	i = 0;
 	len_str = 0;
-	while(format[i])
+	while (format[i])
 	{
 		if (format[i] == '%')
 		{
@@ -45,33 +58,18 @@ static int	ft_priting(char *format, va_list args)
 		}
 		else
 			len_str += write(1, &format[i], 1);
-		i++; //avança para a próxima casa da string
+		i++;
 	}
-	return(len_str);
+	return (len_str);
 }
 
-int	ft_printf(char *format, ...)
+int	ft_printf(const char *format, ...)
 {
-	va_list args;
+	va_list	args;
+	int		len_printed;
 
-	int	len_printed;
-
-	va_start(args, format); //(list, último parâmetro)
-
+	va_start(args, format);
 	len_printed = ft_priting(format, args);
-
 	va_end(args);
-
 	return (len_printed);
-}
-
-int main(void)
-{
-	int ft;
-	int p;
-
-	ft = ft_printf("Flag: %i, %c", 1111111114, 'a');
-	p = printf("Flag: %i, %c", 111111114, 'a');
-	printf("printf %i", ft);
-	printf("printf %i", p);
 }
