@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmedeiro <lmedeiro@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: lmedeiro <lmedeiro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 22:14:14 by lmedeiro          #+#    #+#             */
-/*   Updated: 2022/11/08 23:59:31 by lmedeiro         ###   ########.fr       */
+/*   Updated: 2022/11/09 19:24:07 by lmedeiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,9 @@ int	ft_printf(const char *format, ...)
 {
 	va_list	args;
 	int		len_printed;
+
+	if (!format)
+		return (-1);
 
 	va_start(args, format);
 	len_printed = ft_priting(format, args);
